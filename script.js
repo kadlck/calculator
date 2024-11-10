@@ -44,7 +44,7 @@ function createButtons (){
         display.textContent = "";
         realNumber = oneNumber.concat();
         finalArray.push(realNumber);
-        operationArray.push("+");
+        operation = "+";
     })
     otherButtons.appendChild(plus)
     const minus = document.createElement("button");
@@ -56,7 +56,7 @@ function createButtons (){
         display.textContent = "";
         realNumber = oneNumber.concat();
         finalArray.push(realNumber);
-        operationArray.push("-");
+        operation = "-";
     })
     otherButtons.appendChild(minus)
     const divide = document.createElement("button");
@@ -68,7 +68,7 @@ function createButtons (){
         display.textContent = "";
         realNumber = oneNumber.concat();
         finalArray.push(realNumber);
-        operationArray.push("/");
+        operation = "/";
     })
     otherButtons.appendChild(divide)
     const multiply = document.createElement("button");
@@ -80,7 +80,7 @@ function createButtons (){
         display.textContent = "";
         realNumber = oneNumber.concat();
         finalArray.push(realNumber);
-        operationArray.push("*");
+        operation = "*";
     })
     otherButtons.appendChild(multiply)
     const enter = document.createElement("button");
@@ -92,7 +92,11 @@ function createButtons (){
         display.textContent = ""
         realNumber = oneNumber.concat();
         finalArray.push(realNumber);
-        hitEnter();
+        result = hitEnter();
+        display.textContent = result
+        curentArray = []
+        finalArray = []
+        operation = "";
     })
     otherButtons.appendChild(enter)
     const clear = document.createElement("button");
@@ -104,7 +108,7 @@ function createButtons (){
         display.textContent = ""
         curentArray = []
         finalArray=[];
-        operationArray=[];
+        operation="";
     })
     otherButtons.appendChild(clear)
 
@@ -123,9 +127,24 @@ createButtons();
 
 var curentArray = [];
 var finalArray = [];
-var operationArray = [];
+var operation;
 
 function hitEnter(){
-    console.log(finalArray);
-    console.log(operationArray);
+    number1 = +finalArray[0]
+    number2 = +finalArray[1]
+    if (operation == "+"){
+        return number1+number2
+    }else if(operation == "-"){
+        return number1-number2
+    }else if(operation == "/"){
+        if(number2 == 0){
+            return "HA!HA!"
+        }else{
+            return number1/number2
+        }
+    }else if(operation == "*"){
+        return number1*number2
+    }else{
+        return "ERORR"
+    }
 }
